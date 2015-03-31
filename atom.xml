@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[chalypeng's Blogger]]></title>
+  <subtitle><![CDATA[More better, more simple...]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="chalypeng.me/"/>
+  <updated>2015-03-31T02:16:08.800Z</updated>
+  <id>chalypeng.me/</id>
+  
+  <author>
+    <name><![CDATA[chalypeng]]></name>
+    <email><![CDATA[chalypeng@gmail.com]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[关于gitignore文件过滤无效-不能过滤某些文件问题]]></title>
+    <link href="chalypeng.me/2015/02/05/about-gitignore-problem/"/>
+    <id>chalypeng.me/2015/02/05/about-gitignore-problem/</id>
+    <published>2015-02-05T02:52:16.000Z</published>
+    <updated>2015-03-21T02:27:00.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="利用-gitignore过滤文件，如编译过程中的中间文件等等，这些文件不需要被追踪管理，需要被忽略掉。">利用.gitignore过滤文件，如编译过程中的中间文件等等，这些文件不需要被追踪管理，需要被忽略掉。</h2>
+<p><strong>问题</strong></p>
+<blockquote>
+<p>在.gitignore中添加FileSample文件，以过滤该文件，但是通过git status查看仍显示FileSample文件的更改状态。<br><strong>原因：</strong><br>.gitignore文件只对还没有加入版本管理的文件起作用，若之前已经这些文件纳入了版本库，就不起作用了<br><strong>解决办法：</strong></p>
+<h2 id="需要在git库中删除该文件，并更新。">需要在git库中删除该文件，并更新。</h2>
+</blockquote>
+<p>再次git status查看状态，FileSample文件不再显示更改状态，也就是不再追踪变化，gitignore起作用了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="利用-gitignore过滤文件，如编译过程中的中间文件等等，这些文件不需要被追踪管理，需要被忽略掉。">利用.gitignore过滤文件，如编译过程中的中间文件等等，这些文件不需要被追踪管理，需要被忽略掉。</h2>
+<p><strong>问题</strong>]]>
+    </summary>
+    
+      <category term="Git" scheme="chalypeng.me/tags/Git/"/>
+    
+      <category term="Git" scheme="chalypeng.me/categories/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[python排序高级]]></title>
+    <link href="chalypeng.me/2015/01/30/python-how-to-sorting/"/>
+    <id>chalypeng.me/2015/01/30/python-how-to-sorting/</id>
+    <published>2015-01-30T02:06:37.000Z</published>
+    <updated>2015-01-30T02:31:39.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>Python list内置sort()方法用来排序，也可以用python内置的全局sorted()方法来对可迭代的序列排序生成新的序列。</strong></p>
+<p>1）排序基础<br>简单的升序排序是非常容易的。只需要调用sorted()方法。它返回一个新的list，新的list的元素基于小于运算符(<strong>lt</strong>)来排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;sorted([<span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>])</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>你也可以使用list.sort()方法来排序，此时list本身将被修改。通常此方法不如sorted()方便，但是如果你不需要保留原来的list，此方法将更有效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a.sort()</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>另一个不同就是list.sort()方法仅被定义在list中，相反地sorted()方法对所有的可迭代序列都有效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted({<span class="number">1</span>: <span class="string">'D'</span>, <span class="number">2</span>: <span class="string">'B'</span>, <span class="number">3</span>: <span class="string">'B'</span>, <span class="number">4</span>: <span class="string">'E'</span>, <span class="number">5</span>: <span class="string">'A'</span>})</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>2）key参数/函数<br><a id="more"></a><br>从python2.4开始，list.sort()和sorted()函数增加了key参数来指定一个函数，此函数将在每个元素比较前被调用。 例如通过key指定的函数来忽略字符串的大小写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(<span class="string">"This is a test string from Andrew"</span>.split(), key=str.lower)</div><div class="line">[<span class="string">'a'</span>, <span class="string">'Andrew'</span>, <span class="string">'from'</span>, <span class="string">'is'</span>, <span class="string">'string'</span>, <span class="string">'test'</span>, <span class="string">'This'</span>]</div></pre></td></tr></table></figure>
+
+<p>key参数的值为一个函数，此函数只有一个参数且返回一个值用来进行比较。这个技术是快速的因为key指定的函数将准确地对每个元素调用。</p>
+<p>更广泛的使用情况是用复杂对象的某些值来对复杂对象的序列排序，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>student_tuples = [</div><div class="line">        (<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>),</div><div class="line">        (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>),</div><div class="line">        (<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>),</div><div class="line">]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_tuples, key=<span class="keyword">lambda</span> student: student[<span class="number">2</span>])   <span class="comment"># sort by age</span></div><div class="line">[(<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>)]</div></pre></td></tr></table></figure>
+
+<p>同样的技术对拥有命名属性的复杂对象也适用，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, grade, age)</span>:</span></div><div class="line">                self.name = name</div><div class="line">                self.grade = grade</div><div class="line">                self.age = age</div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">                <span class="keyword">return</span> repr((self.name, self.grade, self.age))</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>student_objects = [</div><div class="line">        Student(<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>),</div><div class="line">        Student(<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>),</div><div class="line">        Student(<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>),</div><div class="line">]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_objects, key=<span class="keyword">lambda</span> student: student.age)   <span class="comment"># sort by age</span></div><div class="line">[(<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>)]</div></pre></td></tr></table></figure>
+
+<p>3）Operator 模块函数</p>
+<p>上面的key参数的使用非常广泛，因此python提供了一些方便的函数来使得访问方法更加容易和快速。operator模块有itemgetter，attrgetter，从2.6开始还增加了methodcaller方法。使用这些方法，上面的操作将变得更加简洁和快速：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">from</span> operator <span class="keyword">import</span> itemgetter, attrgetter</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_tuples, key=itemgetter(<span class="number">2</span>))</div><div class="line">[(<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>)]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_objects, key=attrgetter(<span class="string">'age'</span>))</div><div class="line">[(<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>)]</div></pre></td></tr></table></figure>
+
+<p>operator模块还允许多级的排序，例如，先以grade，然后再以age来排序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_tuples, key=itemgetter(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line">[(<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>), (<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>)]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_objects, key=attrgetter(<span class="string">'grade'</span>, <span class="string">'age'</span>))</div><div class="line">[(<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>), (<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>)]</div></pre></td></tr></table></figure>
+
+<p>4）升序和降序</p>
+<p>list.sort()和sorted()都接受一个参数reverse（True or False）来表示升序或降序排序。例如对上面的student降序排序如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_tuples, key=itemgetter(<span class="number">2</span>), reverse=<span class="keyword">True</span>)</div><div class="line">[(<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>)]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_objects, key=attrgetter(<span class="string">'age'</span>), reverse=<span class="keyword">True</span>)</div><div class="line">[(<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>)]</div></pre></td></tr></table></figure>
+
+<p>5）排序的稳定性和复杂排序</p>
+<p>从python2.2开始，排序被保证为稳定的。意思是说多个元素如果有相同的key，则排序前后他们的先后顺序不变。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>data = [(<span class="string">'red'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">1</span>), (<span class="string">'red'</span>, <span class="number">2</span>), (<span class="string">'blue'</span>, <span class="number">2</span>)]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(data, key=itemgetter(<span class="number">0</span>))</div><div class="line">[(<span class="string">'blue'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">2</span>), (<span class="string">'red'</span>, <span class="number">1</span>), (<span class="string">'red'</span>, <span class="number">2</span>)]</div></pre></td></tr></table></figure>
+
+<p>注意在排序后’blue’的顺序被保持了，即’blue’, 1在’blue’, 2的前面。</p>
+<p>更复杂地你可以构建多个步骤来进行更复杂的排序，例如对student数据先以grade降序排列，然后再以age升序排列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>s = sorted(student_objects, key=attrgetter(<span class="string">'age'</span>))     <span class="comment"># sort on secondary key</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(s, key=attrgetter(<span class="string">'grade'</span>), reverse=<span class="keyword">True</span>)       <span class="comment"># now sort on primary key, descending</span></div><div class="line">[(<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>)]</div></pre></td></tr></table></figure>
+
+<p>6）最老土的排序方法-DSU<br>我们称其为DSU（Decorate-Sort-Undecorate）,原因为排序的过程需要下列三步：<br>第一：对原始的list进行装饰，使得新list的值可以用来控制排序；<br>第二：对装饰后的list排序；<br>第三：将装饰删除，将排序后的装饰list重新构建为原来类型的list；</p>
+<p>例如，使用DSU方法来对student数据根据grade排序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>decorated = [(student.grade, i, student) <span class="keyword">for</span> i, student <span class="keyword">in</span> enumerate(student_objects)]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>decorated.sort()</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>[student <span class="keyword">for</span> grade, i, student <span class="keyword">in</span> decorated]               <span class="comment"># undecorate</span></div><div class="line">[(<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>)]</div></pre></td></tr></table></figure>
+
+<p>上面的比较能够工作，原因是tuples是可以用来比较，tuples间的比较首先比较tuples的第一个元素，如果第一个相同再比较第二个元素，以此类推。</p>
+<p>并不是所有的情况下都需要在以上的tuples中包含索引，但是包含索引可以有以下好处：<br>第一：排序是稳定的，如果两个元素有相同的key，则他们的原始先后顺序保持不变；<br>第二：原始的元素不必用来做比较，因为tuples的第一和第二元素用来比较已经是足够了。</p>
+<p>此方法被RandalL.在perl中广泛推广后，他的另一个名字为也被称为Schwartzian transform。</p>
+<p>对大的list或list的元素计算起来太过复杂的情况下，在python2.4前，DSU很可能是最快的排序方法。但是在2.4之后，上面解释的key函数提供了类似的功能。</p>
+<p>7）其他语言普遍使用的排序方法-cmp函数<br>在python2.4前，sorted()和list.sort()函数没有提供key参数，但是提供了cmp参数来让用户指定比较函数。此方法在其他语言中也普遍存在。</p>
+<p>在python3.0中，cmp参数被彻底的移除了，从而简化和统一语言，减少了高级比较和<strong>cmp</strong>方法的冲突。</p>
+<p>在python2.x中cmp参数指定的函数用来进行元素间的比较。此函数需要2个参数，然后返回负数表示小于，0表示等于，正数表示大于。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">numeric_compare</span><span class="params">(x, y)</span>:</span></div><div class="line">        <span class="keyword">return</span> x - y</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted([<span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">3</span>], cmp=numeric_compare)</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>或者你可以反序排序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">reverse_numeric</span><span class="params">(x, y)</span>:</span></div><div class="line">        <span class="keyword">return</span> y - x</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted([<span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">3</span>], cmp=reverse_numeric)</div><div class="line">[<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div></pre></td></tr></table></figure>
+
+<p>当我们将现有的2.x的代码移植到3.x时，需要将cmp函数转化为key函数，以下的wrapper很有帮助：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cmp_to_key</span><span class="params">(mycmp)</span>:</span></div><div class="line">    <span class="string">'Convert a cmp= function into a key= function'</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">K</span><span class="params">(object)</span>:</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, obj, *args)</span>:</span></div><div class="line">            self.obj = obj</div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__lt__</span><span class="params">(self, other)</span>:</span></div><div class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &lt; <span class="number">0</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__gt__</span><span class="params">(self, other)</span>:</span></div><div class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &gt; <span class="number">0</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span><span class="params">(self, other)</span>:</span></div><div class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) == <span class="number">0</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__le__</span><span class="params">(self, other)</span>:</span></div><div class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &lt;= <span class="number">0</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__ge__</span><span class="params">(self, other)</span>:</span></div><div class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &gt;= <span class="number">0</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__ne__</span><span class="params">(self, other)</span>:</span></div><div class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) != <span class="number">0</span></div><div class="line">    <span class="keyword">return</span> K</div></pre></td></tr></table></figure>
+
+<p>当需要将cmp转化为key时，只需要：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted([<span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">3</span>], key=cmp_to_key(reverse_numeric))</div><div class="line">[<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div></pre></td></tr></table></figure>
+
+<p>从python2.7，cmp_to_key()函数被增加到了functools模块中。</p>
+<p>8)其他注意事项</p>
+<ul>
+<li><p>对需要进行区域相关的排序时，可以使用locale.strxfrm()作为key函数，或者使用local.strcoll()作为cmp函数。</p>
+</li>
+<li><p>reverse参数任然保持了排序的稳定性，有趣的时，同样的效果可以使用reversed()函数两次来实现：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>data = [(<span class="string">'red'</span>, <span class="number">1</span>), (<span class="string">'blue'</span>, <span class="number">1</span>), (<span class="string">'red'</span>, <span class="number">2</span>), (<span class="string">'blue'</span>, <span class="number">2</span>)]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">assert</span> sorted(data, reverse=<span class="keyword">True</span>) == list(reversed(sorted(reversed(data))))</div></pre></td></tr></table></figure>
+
+<ul>
+<li>其实排序在内部是调用元素的<strong>cmp</strong>来进行的，所以我们可以为元素类型增加<strong>cmp</strong>方法使得元素可比较，例如：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>Student.__lt__ = <span class="keyword">lambda</span> self, other: self.age &lt; other.age</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(student_objects)</div><div class="line">[(<span class="string">'dave'</span>, <span class="string">'B'</span>, <span class="number">10</span>), (<span class="string">'jane'</span>, <span class="string">'B'</span>, <span class="number">12</span>), (<span class="string">'john'</span>, <span class="string">'A'</span>, <span class="number">15</span>)]</div></pre></td></tr></table></figure>
+
+<ul>
+<li>key函数不仅可以访问需要排序元素的内部数据，还可以访问外部的资源，例如，如果学生的成绩是存储在dictionary中的，则可以使用此dictionary来对学生名字的list排序，如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>students = [<span class="string">'dave'</span>, <span class="string">'john'</span>, <span class="string">'jane'</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>newgrades = {<span class="string">'john'</span>: <span class="string">'F'</span>, <span class="string">'jane'</span>:<span class="string">'A'</span>, <span class="string">'dave'</span>: <span class="string">'C'</span>}</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted(students, key=newgrades.__getitem__)</div><div class="line">[<span class="string">'jane'</span>, <span class="string">'dave'</span>, <span class="string">'john'</span>]</div></pre></td></tr></table></figure>
+
+<p>*当你需要在处理数据的同时进行排序的话，sort(),sorted()或bisect.insort()不是最好的方法。在这种情况下，可以使用heap，red-black tree或treap。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>Python list内置sort()方法用来排序，也可以用python内置的全局sorted()方法来对可迭代的序列排序生成新的序列。</strong></p>
+<p>1）排序基础<br>简单的升序排序是非常容易的。只需要调用sorted()方法。它返回一个新的list，新的list的元素基于小于运算符(<strong>lt</strong>)来排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;sorted([<span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>])</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>你也可以使用list.sort()方法来排序，此时list本身将被修改。通常此方法不如sorted()方便，但是如果你不需要保留原来的list，此方法将更有效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a.sort()</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>另一个不同就是list.sort()方法仅被定义在list中，相反地sorted()方法对所有的可迭代序列都有效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>sorted({<span class="number">1</span>: <span class="string">'D'</span>, <span class="number">2</span>: <span class="string">'B'</span>, <span class="number">3</span>: <span class="string">'B'</span>, <span class="number">4</span>: <span class="string">'E'</span>, <span class="number">5</span>: <span class="string">'A'</span>})</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>2）key参数/函数<br>]]>
+    
+    </summary>
+    
+      <category term="Python" scheme="chalypeng.me/tags/Python/"/>
+    
+      <category term="Python" scheme="chalypeng.me/categories/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Python中xrange和range区别]]></title>
+    <link href="chalypeng.me/2015/01/29/diff-xrange-range/"/>
+    <id>chalypeng.me/2015/01/29/diff-xrange-range/</id>
+    <published>2015-01-29T06:41:43.000Z</published>
+    <updated>2015-01-30T02:32:18.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>xrange和range区别:</strong><br>这两个基本上都是在循环的时候用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">100</span>):</div><div class="line">    <span class="keyword">print</span> i</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>, <span class="number">100</span>):</div><div class="line">    <span class="keyword">print</span> i</div></pre></td></tr></table></figure>
+
+<p>这两个输出的结果都是一样的，实际上有很多不同，<code>range</code>会直接生成一个<code>list</code>对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a = range(<span class="number">0</span>,<span class="number">100</span>)</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> type(a)</div><div class="line">&lt;type <span class="string">'list'</span>&gt;</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> a</div><div class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>, <span class="number">27</span>, <span class="number">28</span>, <span class="number">29</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">32</span>, <span class="number">33</span>, <span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>, <span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>, <span class="number">44</span>, <span class="number">45</span>, <span class="number">46</span>, <span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>, <span class="number">50</span>, <span class="number">51</span>, <span class="number">52</span>, <span class="number">53</span>, <span class="number">54</span>, <span class="number">55</span>, <span class="number">56</span>, <span class="number">57</span>, <span class="number">58</span>, <span class="number">59</span>, <span class="number">60</span>, <span class="number">61</span>, <span class="number">62</span>, <span class="number">63</span>, <span class="number">64</span>, <span class="number">65</span>, <span class="number">66</span>, <span class="number">67</span>, <span class="number">68</span>, <span class="number">69</span>, <span class="number">70</span>, <span class="number">71</span>, <span class="number">72</span>, <span class="number">73</span>, <span class="number">74</span>, <span class="number">75</span>, <span class="number">76</span>, <span class="number">77</span>, <span class="number">78</span>, <span class="number">79</span>, <span class="number">80</span>, <span class="number">81</span>, <span class="number">82</span>, <span class="number">83</span>, <span class="number">84</span>, <span class="number">85</span>, <span class="number">86</span>, <span class="number">87</span>, <span class="number">88</span>, <span class="number">89</span>, <span class="number">90</span>, <span class="number">91</span>, <span class="number">92</span>, <span class="number">93</span>, <span class="number">94</span>, <span class="number">95</span>, <span class="number">96</span>, <span class="number">97</span>, <span class="number">98</span>, <span class="number">99</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> a[<span class="number">0</span>], a[<span class="number">1</span>]</div><div class="line"><span class="number">0</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>而<code>xrange</code>则不会直接生成一个<code>list</code>，而是每次调用返回其中的一个值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a = xrange(<span class="number">0</span>,<span class="number">100</span>)</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> type(a)</div><div class="line">&lt;type <span class="string">'xrange'</span>&gt;</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> a</div><div class="line">xrange(<span class="number">100</span>)</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> a[<span class="number">0</span>], a[<span class="number">1</span>]</div><div class="line"><span class="number">0</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>所以<code>xrange</code>做循环的性能比<code>range</code>好，尤其是返回很大的时候！</p>
+<p>尽量用<code>xrange</code>吧，除非你是要返回一个列表。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>xrange和range区别:</strong><br>这两个基本上都是在循环的时候用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="]]>
+    </summary>
+    
+      <category term="Python" scheme="chalypeng.me/tags/Python/"/>
+    
+      <category term="Python" scheme="chalypeng.me/categories/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ORA-00904-标识符无效解决办法]]></title>
+    <link href="chalypeng.me/2015/01/28/ORA-00904-%E6%A0%87%E8%AF%86%E7%AC%A6%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>chalypeng.me/2015/01/28/ORA-00904-标识符无效解决办法/</id>
+    <published>2015-01-28T01:00:32.000Z</published>
+    <updated>2015-01-29T06:56:23.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>出现此错误首先检查输入的字段名与数据库的表中的字段名是否一样。</strong><br>如果一样，就要检查下表的字段名的大小写了，如果用navicat等图形化管理工具建表时，字段名写成了小写，那么今后查询此表时就同样要用小写，但是在命令行内oracle数据库后自动将小写转换为大写再接收，所以<strong>需要给小写的字段名加上引号才能查询成功。</strong><br>C#用调用时也一样，由于oracle接收字符串都会将小写转化为大写，所以也很可能出现标识符无效的错误。<br>所以在建表时字段名最好都用大写，尤其当用图形化工具建表时更要注意这一点。</p>
+<hr>
+<p>现在举一个遇到的例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="operator"><span class="keyword">insert</span> <span class="keyword">into</span> SSQX_SURGERY_INFO (ID, PackId, REMARK, DEPARTID, AMOUNT, PRIORITY) <span class="keyword">values</span> (<span class="number">3</span>, <span class="number">11</span>, <span class="string">'1rt'</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">'fdg'</span>)</span></div></pre></td></tr></table></figure>
+
+<p> 一直报<code>PackId</code>是无效标识符改成<code>&quot;PackId&quot;</code>即可</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="operator"><span class="keyword">insert</span> <span class="keyword">into</span> SSQX_SURGERY_INFO (ID, ”PackId“, REMARK, DEPARTID, AMOUNT, PRIORITY) <span class="keyword">values</span> (<span class="number">3</span>, <span class="number">11</span>, <span class="string">'1rt'</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">'fdg'</span>)</span></div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>出现此错误首先检查输入的字段名与数据库的表中的字段名是否一样。</strong><br>如果一样，就要检查下表的字段名的大小写了，如果用navicat等图形化管理工具建表时，字段名写成了小写，那么今后查询此表时就同样要用小写，但是在命令行内oracle数据库]]>
+    </summary>
+    
+      <category term="Oracle" scheme="chalypeng.me/tags/Oracle/"/>
+    
+      <category term="Database" scheme="chalypeng.me/categories/Database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[SublimeText快捷键列表]]></title>
+    <link href="chalypeng.me/2015/01/23/SublimeText-Shortcuts-Cheatsheet/"/>
+    <id>chalypeng.me/2015/01/23/SublimeText-Shortcuts-Cheatsheet/</id>
+    <published>2015-01-23T03:18:47.000Z</published>
+    <updated>2015-02-04T02:00:27.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="快捷键列表（Shortcuts_Cheatsheet）">快捷键列表（Shortcuts Cheatsheet）</h2>
+<h3 id="通用（General）">通用（General）</h3>
+<ul>
+<li><code>↑↓←→</code>：上下左右移动光标，注意不是不是KJHL！</li>
+<li><code>Alt</code>：调出菜单</li>
+<li><code>Ctrl + Shift + P</code>：调出命令板（Command Palette）</li>
+<li><p><code>Ctrl +</code>：调出控制台</p>
+<h3 id="编辑（Editing）">编辑（Editing）</h3>
+</li>
+<li><p><code>Ctrl + Enter</code>：在当前行下面新增一行然后跳至该行</p>
+</li>
+<li><code>Ctrl + Shift + Enter</code>：在当前行上面增加一行并跳至该行</li>
+<li><code>Ctrl + ←/→</code>：进行逐词移动</li>
+<li><code>Ctrl + Shift + ←/→</code>：进行逐词选择</li>
+<li><code>Ctrl + ↑/↓</code>：移动当前显示区域</li>
+<li><p><code>Ctrl + Shift + ↑/↓</code>：移动当前行</p>
+<h3 id="选择（Selecting）">选择（Selecting）</h3>
+</li>
+<li><p><code>Ctrl + D</code>：选择当前光标所在的词并高亮该词所有出现的位置，再次<code>Ctrl + D</code>选择该词出现的下一个位置，在多重选词的过程中，使用<code>Ctrl + K</code>进行跳过，使用<code>Ctrl + U</code>进行回退，使用<code>Esc</code>退出多重编辑</p>
+</li>
+<li><code>Ctrl + Shift + L</code> ：将当前选中区域打散</li>
+<li><code>Ctrl + J</code> ：把当前选中区域合并为一行</li>
+<li><code>Ctrl + M</code> ：在起始括号和结尾括号间切换</li>
+<li><code>Ctrl + Shift + M</code> ：快速选择括号间的内容</li>
+<li><code>Ctrl + Shift + J</code> ：快速选择同缩进的内容</li>
+<li><p><code>Ctrl + Shift + Spac e</code> ：快速选择当前作用域（Scope）的内容<br><a id="more"></a></p>
+<h3 id="查找&amp;替换（Finding&amp;Replacing）">查找&amp;替换（Finding&amp;Replacing）</h3>
+</li>
+<li><p><code>F3</code> ：跳至当前关键字下一个位置</p>
+</li>
+<li><code>Shift + F3</code> ：跳到当前关键字上一个位置</li>
+<li><code>Alt + F3</code> ：选中当前关键字出现的所有位置</li>
+<li><code>Ctrl + F/H</code> ：进行标准查找/替换，之后：</li>
+<li><code>Alt + C</code> ：切换大小写敏感（Case-sensitive）模式</li>
+<li><code>Alt + W</code> ：切换整字匹配（Whole matching）模式</li>
+<li><code>Alt + R</code> ：切换正则匹配（Regex matching）模式</li>
+<li><code>Ctrl + Shift + H</code> ：替换当前关键字</li>
+<li><code>Ctrl + Alt + Enter</code> ：替换所有关键字匹配</li>
+<li><p><code>Ctrl + Shift + F</code> ：多文件搜索&amp;替换</p>
+<h3 id="跳转（Jumping）">跳转（Jumping）</h3>
+</li>
+<li><p><code>Ctrl + P</code>：跳转到指定文件，输入文件名后可以：<br>  <code>@</code> 符号跳转：输入@symbol跳转到symbol符号所在的位置<br>  <code>#</code> 关键字跳转：输入#keyword跳转到keyword所在的位置<br>  <code>:</code> 行号跳转：输入:<code>12</code>跳转到文件的第12行。</p>
+</li>
+<li><code>Ctrl + R</code>：跳转到指定符号</li>
+<li><p><code>Ctrl + G</code>：跳转到指定行号</p>
+<h3 id="窗口（Window）">窗口（Window）</h3>
+</li>
+<li><p><code>Ctrl + Shift + N</code>：创建一个新窗口</p>
+</li>
+<li><code>Ctrl + N</code>：在当前窗口创建一个新标签</li>
+<li><code>Ctrl + W</code>：关闭当前标签，当窗口内没有标签时会关闭该窗口</li>
+<li><p><code>Ctrl + Shift + T</code>：恢复刚刚关闭的标签</p>
+<h3 id="屏幕（Screen）">屏幕（Screen）</h3>
+</li>
+<li><p><code>F11</code> ：切换普通全屏</p>
+</li>
+<li><code>Shift + F11</code> ：切换无干扰全屏</li>
+<li><code>Alt + Shift + 2</code> ：进行左右分屏</li>
+<li><code>Alt + Shift + 8</code> ：进行上下分屏</li>
+<li><code>Alt + Shift + 5</code> ：进行上下左右分屏</li>
+<li>分屏之后，使用<code>Ctrl + 数字键</code>跳转到指定屏，使用<code>Ctrl + Shift + 数字键</code>将当前屏移动到指定屏</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="快捷键列表（Shortcuts_Cheatsheet）">快捷键列表（Shortcuts Cheatsheet）</h2>
+<h3 id="通用（General）">通用（General）</h3>
+<ul>
+<li><code>↑↓←→</code>：上下左右移动光标，注意不是不是KJHL！</li>
+<li><code>Alt</code>：调出菜单</li>
+<li><code>Ctrl + Shift + P</code>：调出命令板（Command Palette）</li>
+<li><p><code>Ctrl +</code>：调出控制台</p>
+<h3 id="编辑（Editing）">编辑（Editing）</h3>
+</li>
+<li><p><code>Ctrl + Enter</code>：在当前行下面新增一行然后跳至该行</p>
+</li>
+<li><code>Ctrl + Shift + Enter</code>：在当前行上面增加一行并跳至该行</li>
+<li><code>Ctrl + ←/→</code>：进行逐词移动</li>
+<li><code>Ctrl + Shift + ←/→</code>：进行逐词选择</li>
+<li><code>Ctrl + ↑/↓</code>：移动当前显示区域</li>
+<li><p><code>Ctrl + Shift + ↑/↓</code>：移动当前行</p>
+<h3 id="选择（Selecting）">选择（Selecting）</h3>
+</li>
+<li><p><code>Ctrl + D</code>：选择当前光标所在的词并高亮该词所有出现的位置，再次<code>Ctrl + D</code>选择该词出现的下一个位置，在多重选词的过程中，使用<code>Ctrl + K</code>进行跳过，使用<code>Ctrl + U</code>进行回退，使用<code>Esc</code>退出多重编辑</p>
+</li>
+<li><code>Ctrl + Shift + L</code> ：将当前选中区域打散</li>
+<li><code>Ctrl + J</code> ：把当前选中区域合并为一行</li>
+<li><code>Ctrl + M</code> ：在起始括号和结尾括号间切换</li>
+<li><code>Ctrl + Shift + M</code> ：快速选择括号间的内容</li>
+<li><code>Ctrl + Shift + J</code> ：快速选择同缩进的内容</li>
+<li><p><code>Ctrl + Shift + Spac e</code> ：快速选择当前作用域（Scope）的内容<br>]]>
+    
+    </summary>
+    
+      <category term="SublimeText" scheme="chalypeng.me/tags/SublimeText/"/>
+    
+      <category term="Editer" scheme="chalypeng.me/categories/Editer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Python字符串格式化]]></title>
+    <link href="chalypeng.me/2015/01/17/python-format-string/"/>
+    <id>chalypeng.me/2015/01/17/python-format-string/</id>
+    <published>2015-01-17T06:18:40.000Z</published>
+    <updated>2015-01-29T06:56:15.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Python格式操作符">Python格式操作符</h2>
+<p>格式操作符为真实值预留位置，并控制显示的格式。格式符可以包含有一个<code>类型码</code>，用以控制显示类型，常见类型如下:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="tag">%<span class="title">s</span></span>    字符串 (采用str()的显示)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">r</span>    字符串 (采用repr()的显示)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">c</span>    单个字符</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">b</span>    二进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">d</span>    十进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">i</span>    十进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">o</span>    八进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">x</span>    十六进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">e</span>    指数 (基底写为e)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">E</span>    指数 (基底写为E)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">f</span>    浮点数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">F</span>    浮点数，与上相同</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">g</span>    指数(e)或浮点数 (根据显示长度)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">G</span>    指数(E)或浮点数 (根据显示长度)</div><div class="line"><span class="tag"></span></div><div class="line">%%    字符"%"</div></pre></td></tr></table></figure>
+
+<h2 id="使用方法">使用方法</h2>
+<p><code>%[(name)][flags][width].[precision]typecode</code></p>
+<p>(name)：为名称</p>
+<p>flags：可以有+,-,’ ‘或0。+表示右对齐。-表示左对齐。’ ‘为一个空格，表示在正数的左侧填充一个空格，从而与负数对齐。0表示使用0填充。</p>
+<p>width：表示显示宽度</p>
+<p>precision：表示小数点后精度<br><a id="more"></a><br>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">print(<span class="string">"%+10x"</span> % <span class="number">10</span>)</div><div class="line">print(<span class="string">"%04d"</span> % <span class="number">5</span>)</div><div class="line">print(<span class="string">"%6.3f"</span> % <span class="number">2.3</span>)</div></pre></td></tr></table></figure>
+
+<p>上面的width, precision为两个整数。我们可以利用*，来动态代入这两个量。比如：</p>
+<p><code>print(&quot;%.*f&quot; % (4, 1.2))</code></p>
+<p>Python实际上用4来替换*。所以实际的模板为”%.4f”。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Python格式操作符">Python格式操作符</h2>
+<p>格式操作符为真实值预留位置，并控制显示的格式。格式符可以包含有一个<code>类型码</code>，用以控制显示类型，常见类型如下:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="tag">%<span class="title">s</span></span>    字符串 (采用str()的显示)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">r</span>    字符串 (采用repr()的显示)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">c</span>    单个字符</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">b</span>    二进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">d</span>    十进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">i</span>    十进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">o</span>    八进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">x</span>    十六进制整数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">e</span>    指数 (基底写为e)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">E</span>    指数 (基底写为E)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">f</span>    浮点数</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">F</span>    浮点数，与上相同</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">g</span>    指数(e)或浮点数 (根据显示长度)</div><div class="line"><span class="tag"></span></div><div class="line">%<span class="title">G</span>    指数(E)或浮点数 (根据显示长度)</div><div class="line"><span class="tag"></span></div><div class="line">%%    字符"%"</div></pre></td></tr></table></figure>
+
+<h2 id="使用方法">使用方法</h2>
+<p><code>%[(name)][flags][width].[precision]typecode</code></p>
+<p>(name)：为名称</p>
+<p>flags：可以有+,-,’ ‘或0。+表示右对齐。-表示左对齐。’ ‘为一个空格，表示在正数的左侧填充一个空格，从而与负数对齐。0表示使用0填充。</p>
+<p>width：表示显示宽度</p>
+<p>precision：表示小数点后精度<br>]]>
+    
+    </summary>
+    
+      <category term="Python" scheme="chalypeng.me/tags/Python/"/>
+    
+      <category term="Python" scheme="chalypeng.me/categories/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hexo主题修改-为博客实现更多功能]]></title>
+    <link href="chalypeng.me/2015/01/14/Hexo%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%A4%9A%E5%8A%9F%E8%83%BD/"/>
+    <id>chalypeng.me/2015/01/14/Hexo主题修改-为博客实现更多功能/</id>
+    <published>2015-01-14T08:59:05.000Z</published>
+    <updated>2015-02-04T02:00:04.000Z</updated>
+    <content type="html"><![CDATA[<p>主要介绍快速导航、返回顶部、Swiftype 搜索等功能的实现，代码实现细节直戳 <a href="https://github.com/DaiXiang/hexo-theme-BsLight/" target="_blank" rel="external">GitHub</a></p>
+<a id="more"></a>
+
+<h2 id="快速导航">快速导航</h2>
+<p>Hexo 已经内置支持快速导航（即文章目录），只是有些主题没有提供支持。</p>
+<h3 id="文章内容插入快速导航">文章内容插入快速导航</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// ..\layout\_partial\article.ejs</div><div class="line">// 各主题结构可能存在出入</div><div class="line">&lt;article class=<span class="string">"&lt;%= item.layout %&gt;"</span>&gt;</div><div class="line">  // <span class="keyword">...</span></div><div class="line">  &lt;div class=<span class="string">"entry"</span>&gt;</div><div class="line">    &lt;% <span class="keyword">if</span> (item.excerpt && index){ %&gt;</div><div class="line">      &lt;%- item.excerpt %&gt;</div><div class="line">    &lt;% } <span class="keyword">else</span> { %&gt;</div><div class="line">      &lt;% <span class="keyword">if</span> (!index){ %&gt;</div><div class="line">        // 插入快速导航</div><div class="line">        &lt;%- partial(<span class="string">'toc'</span>) %&gt;</div><div class="line">      &lt;% } %&gt;</div><div class="line">      &lt;%- item.content %&gt;</div><div class="line">    &lt;% } %&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  // <span class="keyword">...</span></div><div class="line">&lt;/article&gt;</div><div class="line"></div><div class="line">&lt;% <span class="keyword">if</span>(!index && item.toc){ %&gt;</div><div class="line">  // 插入快速导航 action js</div><div class="line">  &lt;%- partial(<span class="string">'toc_action'</span>) %&gt;</div><div class="line">&lt;% } %&gt;</div></pre></td></tr></table></figure>
+
+<h3 id="快速导航主体">快速导航主体</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// ..\layout\_partial\extra\toc.ejs</div><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span>(item.toc && item.toc != <span class="literal">false</span>){ %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"toc"</span> <span class="attribute">class</span>=<span class="value">"toc-article"</span>&gt;</span></div><div class="line">    // 多语言支持</div><div class="line">    <span class="tag">&lt;<span class="title">strong</span> <span class="attribute">class</span>=<span class="value">"toc-title"</span>&gt;</span><span class="vbscript">&lt;%= __(<span class="comment">'navigation') %&gt;</span></span><span class="tag">&lt;/<span class="title">strong</span>&gt;</span></div><div class="line">    <span class="vbscript">&lt;%- toc(item.content) %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="vbscript">&lt;% } %&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="CSS_样式">CSS 样式</h3>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// ..\source\css\_partial\article.styl</div><div class="line">.toc-article</div><div class="line">  float right</div><div class="line"></div><div class="line">#toc</div><div class="line">  background #eee</div><div class="line">  margin 0 0 .5em 1.5em</div><div class="line">  padding 1em</div><div class="line">  border 2px solid color-link</div><div class="line">  line-height 1em</div><div class="line">  font-size .8em</div><div class="line">  strong</div><div class="line">    padding .3em 0</div><div class="line">  ol</div><div class="line">    margin-left 0</div><div class="line">  .toc</div><div class="line">    padding 0</div><div class="line">    li</div><div class="line">      list-style-type none</div><div class="line">  .toc-child</div><div class="line">    padding-left 1.5em</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上就基本实现了快速导航，有些细节需要根据自身主题进行修改调试。下面就 toc action js 介绍说明一些增强效果。</p>
+</blockquote>
+<h3 id="增强效果">增强效果</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line">// ..\layout\_partial\extra\toc_action.ejs</div><div class="line">// 底部添加快速导航开关图标（移动设备上可关闭，不影响阅读）</div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"menu-nav"</span> <span class="attribute">class</span>=<span class="value">"footer-btn"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"&lt;%= __('quick_nav') %&gt;"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/img/list.png"</span>/&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  $(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="keyword">var</span> toc = $(<span class="string">'#toc'</span>);</div><div class="line">    <span class="keyword">var</span> nav = $(<span class="string">'#menu-nav'</span>);</div><div class="line">    <span class="keyword">var</span> toccopy;</div><div class="line">    <span class="keyword">var</span> status = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">if</span> ($(<span class="built_in">window</span>).width() &lt;= <span class="number">583</span>)</div><div class="line">      status = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">var</span> first = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">var</span> position = toc.position();</div><div class="line">    <span class="keyword">var</span> wid = toc.width();</div><div class="line">    $(<span class="built_in">window</span>).scroll(onScroll);</div><div class="line">    $(nav).click(opennav);</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">tocout</span><span class="params">()</span> </span>{</div><div class="line">      <span class="keyword">if</span> (first && status) {</div><div class="line">        <span class="comment">// 复制 toc 副本，将源 toc 浮起，toccopy 占位使得源 toc 浮起后不影响文档流</span></div><div class="line">        toccopy = $(toc).clone();</div><div class="line">        $(toccopy).insertAfter(toc);</div><div class="line">        toc.css(<span class="string">'float'</span>,<span class="string">''</span>);</div><div class="line">        toc.css(<span class="string">'position'</span>,<span class="string">'fixed'</span>);</div><div class="line">        onResize();</div><div class="line">        toc.css(<span class="string">'z-index'</span>,<span class="string">'99'</span>);</div><div class="line">        toc.css(<span class="string">'width'</span>,wid);</div><div class="line">        $(<span class="built_in">window</span>).resize(onResize);</div><div class="line">        first = <span class="literal">false</span>;</div><div class="line">        <span class="comment">// toccopy 占位但隐藏（仍占据文档流）</span></div><div class="line">        toccopy.css(<span class="string">'visibility'</span>, <span class="string">'hidden'</span>);</div><div class="line">      }</div><div class="line"></div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// 当 toc 超出窗口范围时，浮起固定位置</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onScroll</span><span class="params">()</span> </span>{</div><div class="line">      <span class="keyword">var</span> top = $(<span class="built_in">window</span>).scrollTop();</div><div class="line">      <span class="keyword">if</span>(top &gt;= position.top + <span class="number">30</span>){</div><div class="line">        tocout();</div><div class="line">        $(nav).stop().fadeTo(<span class="number">300</span>, <span class="number">1</span>); <span class="comment">// fade back in</span></div><div class="line">        $(nav).animate({bottom: <span class="string">"25px"</span>}, { queue: <span class="literal">false</span>, duration: <span class="number">10</span> });</div><div class="line">      }<span class="keyword">else</span>{</div><div class="line">        hidNav();</div><div class="line">        $(<span class="built_in">window</span>).off(<span class="string">"resize"</span>, onResize);</div><div class="line">        $(nav).stop().fadeTo(<span class="number">300</span>, <span class="number">0</span>); <span class="comment">// fade out</span></div><div class="line">        $(nav).animate({bottom: <span class="string">"-200px"</span>}, { queue: <span class="literal">false</span>, duration: <span class="number">10</span> });</div><div class="line">      }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// 响应式支持</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onResize</span><span class="params">()</span> </span>{</div><div class="line">      <span class="keyword">var</span> width = $(<span class="built_in">window</span>).width();</div><div class="line">      <span class="keyword">var</span> left = $(<span class="string">'#sidebar'</span>).position().left;</div><div class="line">      <span class="keyword">if</span> (width &gt; <span class="number">883</span>){</div><div class="line">        toc.css(<span class="string">'top'</span>, <span class="string">'88px'</span>);</div><div class="line">        toc.css(<span class="string">'left'</span>, left - <span class="number">18</span>);</div><div class="line">      } <span class="keyword">else</span>{</div><div class="line">        <span class="keyword">var</span> top = $(<span class="string">'#nav-top'</span>).innerHeight();</div><div class="line">        toc.css(<span class="string">'top'</span>, top);</div><div class="line">        <span class="keyword">var</span> fix = $(<span class="string">'#main-col'</span>).width() - toc.width() - <span class="number">35</span>;</div><div class="line">        toc.css(<span class="string">'left'</span>, left + fix);</div><div class="line">        <span class="keyword">if</span>($(<span class="built_in">window</span>).scrollTop() &gt;= position.top + <span class="number">30</span>){</div><div class="line">          $(nav).stop().fadeTo(<span class="number">300</span>, <span class="number">1</span>); <span class="comment">// fade back in</span></div><div class="line">          $(nav).animate({bottom: <span class="string">"25px"</span>}, { queue: <span class="literal">false</span>, duration: <span class="number">10</span> });</div><div class="line">        }</div><div class="line">      }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">hidNav</span><span class="params">()</span> </span>{</div><div class="line">      toc.css(<span class="string">'position'</span>,<span class="string">''</span>);</div><div class="line">      toc.css(<span class="string">'float'</span>,<span class="string">'right'</span>);</div><div class="line">      $(toccopy).remove();</div><div class="line">      first = <span class="literal">true</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">opennav</span><span class="params">()</span> </span>{</div><div class="line">      <span class="keyword">if</span> (status) {</div><div class="line">        status = <span class="literal">false</span>;</div><div class="line">        hidNav();</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        status = <span class="literal">true</span>;</div><div class="line">        tocout();</div><div class="line">      }</div><div class="line">    }</div><div class="line">  });</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h2 id="返回顶部">返回顶部</h2>
+<h3 id="主体_Action">主体 Action</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">// ..\layout\_partial\extra\to_top.ejs</div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"totop"</span> <span class="attribute">class</span>=<span class="value">"footer-btn"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">a</span> <span class="attribute">title</span>=<span class="value">"&lt;%= __('return_top') %&gt;"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/img/scrollup.png"</span>/&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">  $(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="comment">// When to show the scroll link</span></div><div class="line">    <span class="comment">// higher number = scroll link appears further down the page</span></div><div class="line">    <span class="keyword">var</span> upperLimit = <span class="number">800</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Our scroll link element</span></div><div class="line">    <span class="keyword">var</span> scrollElem = $(<span class="string">'#totop'</span>);</div><div class="line"></div><div class="line">    <span class="comment">// Scroll to top speed</span></div><div class="line">    <span class="keyword">var</span> scrollSpeed = <span class="number">500</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Show and hide the scroll to top link based on scroll position</span></div><div class="line">    scrollElem.hide();</div><div class="line">    $(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">      <span class="keyword">var</span> scrollTop = $(<span class="built_in">document</span>).scrollTop();</div><div class="line">      <span class="keyword">if</span> ( scrollTop &gt; upperLimit ) {</div><div class="line">        $(scrollElem).stop().fadeTo(<span class="number">300</span>, <span class="number">1</span>); <span class="comment">// fade back in</span></div><div class="line">        $(scrollElem).animate({bottom: <span class="string">"50px"</span>}, { queue: <span class="literal">false</span>, duration: <span class="number">10</span> });</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        $(scrollElem).stop().fadeTo(<span class="number">300</span>, <span class="number">0</span>); <span class="comment">// fade out</span></div><div class="line">        $(scrollElem).animate({bottom: <span class="string">"-200px"</span>}, { queue: <span class="literal">false</span>, duration: <span class="number">10</span> });</div><div class="line">      }</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Scroll to top animation on click</span></div><div class="line">    $(scrollElem).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">      $(<span class="string">'html, body'</span>).animate({scrollTop:<span class="number">0</span>}, scrollSpeed);</div><div class="line">      $(scrollElem).animate({bottom: <span class="string">"-200px"</span>}, { queue: <span class="literal">false</span>, duration: <span class="number">10</span> });</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    });</div><div class="line">  });</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h2 id="Swiftype_搜索">Swiftype 搜索</h2>
+<p><a href="https://swiftype.com/" target="_blank" rel="external">Swiftype</a> 是一个很好用的站内搜索服务，使用它可以很大程度地改善目前静态博客的搜索体验。</p>
+<h3 id="获取安装代码">获取安装代码</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// ..\layout\_partial\extra\swiftype_search.ejs</div><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (theme.swiftype_search.enable){ %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    (<span class="function"><span class="keyword">function</span><span class="params">(w,d,t,u,n,s,e)</span></span>{w[<span class="string">'SwiftypeObject'</span>]=n;w[n]=w[n]||<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">      (w[n].q=w[n].q||[]).push(<span class="built_in">arguments</span>);};s=d.createElement(t);</div><div class="line">      e=d.getElementsByTagName(t)[<span class="number">0</span>];s.async=<span class="number">1</span>;s.src=u;e.parentNode.insertBefore(s,e);</div><div class="line">    })(<span class="built_in">window</span>,<span class="built_in">document</span>,<span class="string">'script'</span>,<span class="string">'//s.swiftypecdn.com/install/v1/st.js'</span>,<span class="string">'_st'</span>);</div><div class="line"></div><div class="line">    _st(<span class="string">'install'</span>,<span class="string">'&lt;%- theme.swiftype_search.install_code %&gt;'</span>);</div><div class="line">  <span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="vbscript">&lt;% } %&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="修改原先搜索框架">修改原先搜索框架</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// ..\layout\_widget\search.ejs</div><div class="line">&lt;div <span class="variable">class=</span><span class="string">"search"</span>&gt;</div><div class="line">  &lt;% <span class="keyword">if</span> (theme.swiftype_search.enable) { %&gt;</div><div class="line">    &lt;form&gt;</div><div class="line">      &lt;input <span class="variable">id=</span><span class="string">"&lt;%- theme.swiftype_search.search_input_selector %&gt;"</span> <span class="variable">type=</span><span class="string">"search"</span> <span class="variable">placeholder=</span><span class="string">"&lt;%= __('search') %&gt;"</span>&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">    &lt;div <span class="variable">id=</span><span class="string">"st-results-container"</span>&gt;&lt;/div&gt;</div><div class="line">  &lt;% } <span class="keyword">else</span> { %&gt;</div><div class="line">    &lt;form <span class="variable">action=</span><span class="string">"//google.com/search"</span> <span class="variable">method=</span><span class="string">"get"</span> <span class="variable">accept-charset=</span><span class="string">"utf-8"</span>&gt;</div><div class="line">      &lt;input <span class="variable">type=</span><span class="string">"search"</span> <span class="variable">name=</span><span class="string">"q"</span> <span class="variable">results=</span><span class="string">"0"</span> <span class="variable">placeholder=</span><span class="string">"&lt;%= __('search') %&gt;"</span>&gt;</div><div class="line">      &lt;input <span class="variable">type=</span><span class="string">"hidden"</span> <span class="variable">name=</span><span class="string">"q"</span> <span class="variable">value=</span><span class="string">"site:&lt;%- config.url.replace(/^https?:\/\//, '') %&gt;"</span>&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">  &lt;% } %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+
+<h3 id="选择插入位置">选择插入位置</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ..\layout\_partial\sidebar.ejs</span></div><div class="line"><span class="comment">// 添加如下代码，插入</span></div><div class="line">&lt;<span class="variable">%-</span> partial(<span class="string">'extra/swiftype_search'</span>) <span class="variable">%&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="配置参数">配置参数</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// ..\_config.yml</div><div class="line">swiftype_search:</div><div class="line">  enable: true</div><div class="line">  install_code: <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></div><div class="line">  search_input_selector: st-search-input</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>主要介绍快速导航、返回顶部、Swiftype 搜索等功能的实现，代码实现细节直戳 <a href="https://github.com/DaiXiang/hexo-theme-BsLight/" target="_blank" rel="external">GitHub</a></p>
+]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="chalypeng.me/tags/Hexo/"/>
+    
+      <category term="Blog" scheme="chalypeng.me/categories/Blog/"/>
+    
+  </entry>
+  
+</feed>
